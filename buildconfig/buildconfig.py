@@ -11,14 +11,16 @@ import json
 import hashlib
 import fnmatch
 import re
-import collections
 import pipes
 import shlex
 import yaml
+try:
+    from collections.abc import MutableMapping
+except ImportError:
+    from collections import MutableMapping
 
 
-
-class SchemaDict(collections.MutableMapping):
+class SchemaDict(MutableMapping):
     def __init__(self, *args, **kwargs):
         self.store = {}
         self.update(dict(*args, **kwargs))
